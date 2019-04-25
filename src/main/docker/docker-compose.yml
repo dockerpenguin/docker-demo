@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: my_database
+    environment:
+      MYSQL_DATABASE: docker_demo
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+#    ports:
+#      - 3306:3306
+    network_mode: foo
+  web:
+    image: dockerpenguin/docker-demo
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    network_mode: foo
+
